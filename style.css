@@ -25,19 +25,21 @@ html {
 }
 
 body {
-    margin: 0;
-    min-height: 100vh;
-    padding: 24px 14px;
+    position: relative;
+    isolation: isolate;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    background:
-        radial-gradient(
-            circle at 50% 0%,
-            rgba(145, 108, 38, 0.13),
-            transparent 40%
-        ),
-        var(--background);
+    justify-content: center;
+    gap: 20px;
+
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin: 0;
+    padding: 32px 16px 18px;
+
+    overflow-x: hidden;
+    background: var(--background);
     color: var(--text);
     font-family: "Segoe UI", Arial, sans-serif;
 }
@@ -47,26 +49,131 @@ button {
 }
 
 /* =========================
+   COSMIC BACKGROUND
+========================= */
+
+.cosmos {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    background:
+        radial-gradient(
+            ellipse at 50% 0%,
+            rgba(145, 108, 38, 0.15),
+            transparent 55%
+        ),
+        radial-gradient(
+            ellipse at 10% 90%,
+            rgba(87, 63, 116, 0.08),
+            transparent 45%
+        ),
+        var(--background);
+}
+
+#stars,
+#particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+#stars {
+    opacity: 0.65;
+    background-image:
+        radial-gradient(1px 1px at 10% 15%, #f4dfa2 95%, transparent),
+        radial-gradient(1px 1px at 25% 72%, #ffffff 95%, transparent),
+        radial-gradient(2px 2px at 82% 18%, #d6b56d 95%, transparent),
+        radial-gradient(1px 1px at 72% 62%, #ffffff 95%, transparent),
+        radial-gradient(1px 1px at 45% 35%, #f4dfa2 95%, transparent),
+        radial-gradient(2px 2px at 92% 82%, #d6b56d 95%, transparent),
+        radial-gradient(1px 1px at 18% 48%, #ffffff 95%, transparent);
+}
+
+#glow {
+    position: absolute;
+    top: -180px;
+    left: 50%;
+    width: min(700px, 100vw);
+    height: 420px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: rgba(214, 181, 109, 0.055);
+    filter: blur(75px);
+}
+
+.ray {
+    position: absolute;
+    top: -25%;
+    left: 50%;
+    width: 1px;
+    height: 150%;
+    transform-origin: top center;
+    background: linear-gradient(
+        to bottom,
+        rgba(214, 181, 109, 0.12),
+        transparent 60%
+    );
+}
+
+.ray-one {
+    transform: rotate(-25deg);
+}
+
+.ray-two {
+    transform: rotate(25deg);
+}
+
+.ray-three {
+    transform: rotate(0deg);
+    opacity: 0.35;
+}
+
+/* =========================
+   MAIN PAGE LAYOUT
+========================= */
+
+main {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex: 0 0 auto;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    min-width: 0;
+}
+
+/* =========================
    MAIN CARD
 ========================= */
 
 #card {
+    position: relative;
     width: 100%;
     max-width: 680px;
+    min-width: 0;
     padding: clamp(24px, 5vw, 52px);
-    position: relative;
     overflow: hidden;
+
     text-align: center;
+    overflow-wrap: anywhere;
+
     background: linear-gradient(
         145deg,
         rgba(23, 24, 32, 0.98),
         rgba(12, 13, 18, 0.99)
     );
+
     border: 1px solid var(--border);
     border-radius: 18px;
+
     box-shadow:
         0 25px 80px rgba(0, 0, 0, 0.5),
         inset 0 0 35px rgba(214, 181, 109, 0.025);
+
     animation: appear 0.45s ease both;
 }
 
@@ -80,6 +187,32 @@ button {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* =========================
+   INITIAL DIVINE SEAL
+========================= */
+
+.seal {
+    display: grid;
+    place-items: center;
+    width: 66px;
+    height: 66px;
+    margin: 0 auto 18px;
+
+    border: 1px solid rgba(214, 181, 109, 0.55);
+    border-radius: 50%;
+
+    color: var(--gold-light);
+    font-size: 2rem;
+
+    box-shadow:
+        0 0 28px rgba(214, 181, 109, 0.08),
+        inset 0 0 20px rgba(214, 181, 109, 0.05);
+}
+
+.seal span {
+    line-height: 1;
 }
 
 /* =========================
@@ -103,6 +236,7 @@ h2 {
     font-size: clamp(1.15rem, 3.5vw, 1.5rem);
     font-weight: 500;
     line-height: 1.4;
+    overflow-wrap: anywhere;
 }
 
 p {
@@ -134,6 +268,11 @@ p {
     line-height: 1.8;
 }
 
+.subtext {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
 .status {
     margin: 25px 0 0;
     color: var(--gold);
@@ -149,6 +288,33 @@ p {
     font-size: 0.68rem;
     letter-spacing: 0.08em;
     line-height: 1.8;
+}
+
+.case-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin: 22px 0;
+    padding: 13px 0;
+
+    border-top: 1px solid rgba(214, 181, 109, 0.2);
+    border-bottom: 1px solid rgba(214, 181, 109, 0.2);
+
+    text-align: left;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+}
+
+.case-line span {
+    color: var(--muted);
+}
+
+.case-line strong {
+    color: var(--gold-light);
+    overflow-wrap: anywhere;
 }
 
 /* =========================
@@ -201,32 +367,40 @@ p {
 ========================= */
 
 .buttons {
-    width: 100%;
-    max-width: 430px;
-    margin: 28px auto 0;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 12px;
+
+    width: 100%;
+    max-width: 430px;
+    margin: 28px auto 0;
 }
 
 .buttons button,
 .love-button-area button {
+    min-width: 0;
     min-height: 50px;
     padding: 14px 18px;
+
     border: 1px solid var(--gold);
     border-radius: 7px;
+
     background: linear-gradient(
         135deg,
         var(--gold-light),
         var(--gold)
     );
+
     color: #17130b;
     font-size: 0.79rem;
     font-weight: 800;
     letter-spacing: 0.065em;
     line-height: 1.4;
+
+    overflow-wrap: anywhere;
     cursor: pointer;
+
     transition:
         background 0.2s ease,
         color 0.2s ease,
@@ -255,6 +429,11 @@ p {
 .buttons button.secondary:hover,
 .love-button-area button.secondary:hover {
     background: rgba(214, 181, 109, 0.08);
+}
+
+button:focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 4px;
 }
 
 /* =========================
@@ -295,9 +474,11 @@ p {
 .love-button-area {
     position: relative !important;
     display: block !important;
+
     width: 100% !important;
     max-width: 420px !important;
     height: 190px !important;
+
     margin: 28px auto 0 !important;
     overflow: hidden !important;
     isolation: isolate;
@@ -307,11 +488,13 @@ p {
 .love-button-area #loveNo {
     position: absolute !important;
     top: 0;
+
     display: block;
     min-width: 0;
     min-height: 50px;
     margin: 0 !important;
     padding: 12px 8px;
+
     font-size: 0.78rem;
     line-height: 1.35;
     white-space: normal;
@@ -329,9 +512,11 @@ p {
     left: 54%;
     width: 42%;
     z-index: 3;
+
     transition:
         left 0.12s ease-out,
         top 0.12s ease-out;
+
     -webkit-user-select: none;
     user-select: none;
 }
@@ -361,6 +546,7 @@ p {
     max-width: 420px;
     height: 7px;
     margin: 28px auto;
+
     overflow: hidden;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(214, 181, 109, 0.18);
@@ -386,6 +572,7 @@ p {
 .verdict-panel {
     margin: 25px 0;
     padding: clamp(22px, 5vw, 38px) 14px;
+
     background:
         radial-gradient(
             circle at center,
@@ -393,6 +580,7 @@ p {
             transparent 75%
         ),
         rgba(255, 255, 255, 0.02);
+
     border: 1px solid var(--border);
     border-radius: 12px;
 }
@@ -471,17 +659,67 @@ p {
 }
 
 /* =========================
+   FOOTER
+   Separate from the card
+========================= */
+
+.footer {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 auto;
+
+    width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 4px 12px 0;
+
+    color: var(--muted);
+    text-align: center;
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    line-height: 1.8;
+
+    overflow-wrap: anywhere;
+}
+
+.footer span {
+    padding: 0 5px;
+    color: var(--gold);
+}
+
+/* Screen-reader-only announcements */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* =========================
    MOBILE RESPONSIVENESS
 ========================= */
 
 @media (max-width: 600px) {
     body {
-        padding: 12px 8px;
-        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 12px;
+        padding: 18px 8px 12px;
+    }
+
+    main {
+        flex: 0 0 auto;
+        margin: auto 0 0;
     }
 
     #card {
-        margin: auto 0;
+        margin: 0;
         padding: 26px 17px;
         border-radius: 13px;
     }
@@ -538,7 +776,30 @@ p {
     .marriage-options {
         font-size: 1.55rem;
     }
+
+    .footer {
+        margin-top: 0;
+        padding: 4px 8px 0;
+        font-size: 0.57rem;
+        letter-spacing: 0.07em;
+        line-height: 1.7;
+    }
 }
+
+/* Short screens: allow scrolling rather than compressing content */
+
+@media (max-height: 700px) {
+    body {
+        justify-content: flex-start;
+    }
+
+    main {
+        margin-top: auto;
+        margin-bottom: 0;
+    }
+}
+
+/* Respect reduced-motion preferences */
 
 @media (prefers-reduced-motion: reduce) {
     *,
@@ -547,5 +808,6 @@ p {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }
