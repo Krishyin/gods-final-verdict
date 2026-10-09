@@ -1,0 +1,551 @@
+
+/* =========================
+   GLOBAL THEME
+========================= */
+
+:root {
+    --background: #08090d;
+    --surface: #101117;
+    --surface-light: #171820;
+    --gold: #d6b56d;
+    --gold-light: #f4dfa2;
+    --text: #f2f0e9;
+    --muted: #a6a5ad;
+    --danger: #e46d65;
+    --border: rgba(214, 181, 109, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    background: var(--background);
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 24px 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(145, 108, 38, 0.13),
+            transparent 40%
+        ),
+        var(--background);
+    color: var(--text);
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+button {
+    font: inherit;
+}
+
+/* =========================
+   MAIN CARD
+========================= */
+
+#card {
+    width: 100%;
+    max-width: 680px;
+    padding: clamp(24px, 5vw, 52px);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    background: linear-gradient(
+        145deg,
+        rgba(23, 24, 32, 0.98),
+        rgba(12, 13, 18, 0.99)
+    );
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.5),
+        inset 0 0 35px rgba(214, 181, 109, 0.025);
+    animation: appear 0.45s ease both;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   HEADINGS AND TEXT
+========================= */
+
+h1 {
+    margin: 12px 0 20px;
+    color: var(--gold-light);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.7rem, 5vw, 2.65rem);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0.045em;
+    overflow-wrap: anywhere;
+}
+
+h2 {
+    color: var(--gold-light);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.15rem, 3.5vw, 1.5rem);
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+p {
+    line-height: 1.7;
+}
+
+.eyebrow {
+    margin: 12px 0;
+    color: var(--gold);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    line-height: 1.7;
+    text-transform: uppercase;
+}
+
+.question {
+    margin: 25px 0 12px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.15rem, 3.5vw, 1.55rem);
+    line-height: 1.5;
+}
+
+.description {
+    max-width: 480px;
+    margin: 12px auto;
+    color: var(--muted);
+    font-size: 0.93rem;
+    line-height: 1.8;
+}
+
+.status {
+    margin: 25px 0 0;
+    color: var(--gold);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1.8;
+}
+
+.footer-note {
+    margin-top: 25px;
+    color: var(--muted);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    line-height: 1.8;
+}
+
+/* =========================
+   SYMBOLS AND DIVIDERS
+========================= */
+
+.sigil {
+    margin: 0 auto 12px;
+    color: var(--gold);
+    font-size: 2.8rem;
+    line-height: 1.2;
+    text-shadow: 0 0 25px rgba(214, 181, 109, 0.2);
+}
+
+.warning-sigil {
+    color: var(--danger);
+    text-shadow: 0 0 25px rgba(228, 109, 101, 0.15);
+}
+
+.rule {
+    width: 90px;
+    height: 1px;
+    margin: 22px auto;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--gold),
+        transparent
+    );
+}
+
+/* =========================
+   CONTENT PANELS
+========================= */
+
+.decree {
+    margin: 24px 0;
+    padding: 22px 18px;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(214, 181, 109, 0.18);
+    border-radius: 10px;
+}
+
+.decree h2 {
+    margin-top: 0;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.buttons {
+    width: 100%;
+    max-width: 430px;
+    margin: 28px auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+}
+
+.buttons button,
+.love-button-area button {
+    min-height: 50px;
+    padding: 14px 18px;
+    border: 1px solid var(--gold);
+    border-radius: 7px;
+    background: linear-gradient(
+        135deg,
+        var(--gold-light),
+        var(--gold)
+    );
+    color: #17130b;
+    font-size: 0.79rem;
+    font-weight: 800;
+    letter-spacing: 0.065em;
+    line-height: 1.4;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.buttons button:hover,
+.love-button-area button:hover {
+    box-shadow: 0 0 22px rgba(214, 181, 109, 0.15);
+}
+
+.buttons button:active,
+.love-button-area button:active {
+    transform: scale(0.98);
+}
+
+.buttons button.secondary,
+.love-button-area button.secondary {
+    background: transparent;
+    color: var(--gold-light);
+    border-color: rgba(214, 181, 109, 0.5);
+}
+
+.buttons button.secondary:hover,
+.love-button-area button.secondary:hover {
+    background: rgba(214, 181, 109, 0.08);
+}
+
+/* =========================
+   PROGRESS BAR
+========================= */
+
+.progress-track {
+    width: 100%;
+    height: 4px;
+    margin: 20px 0 8px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.09);
+    border-radius: 99px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        #8d6a2d,
+        var(--gold-light)
+    );
+    border-radius: inherit;
+    transition: width 0.4s ease;
+}
+
+.progress-label {
+    margin: 8px 0 25px;
+    color: var(--muted);
+    font-size: 0.63rem;
+    letter-spacing: 0.1em;
+}
+
+/* =========================
+   DODGING YES / NO BUTTONS
+========================= */
+
+.love-button-area {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 420px !important;
+    height: 190px !important;
+    margin: 28px auto 0 !important;
+    overflow: hidden !important;
+    isolation: isolate;
+}
+
+.love-button-area #loveYes,
+.love-button-area #loveNo {
+    position: absolute !important;
+    top: 0;
+    display: block;
+    min-width: 0;
+    min-height: 50px;
+    margin: 0 !important;
+    padding: 12px 8px;
+    font-size: 0.78rem;
+    line-height: 1.35;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    touch-action: none;
+}
+
+.love-button-area #loveYes {
+    left: 0;
+    width: 46%;
+    z-index: 2;
+}
+
+.love-button-area #loveNo {
+    left: 54%;
+    width: 42%;
+    z-index: 3;
+    transition:
+        left 0.12s ease-out,
+        top 0.12s ease-out;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* =========================
+   ANALYSIS ANIMATION
+========================= */
+
+.analysis-sigil {
+    animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.65;
+        transform: scale(0.96);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.06);
+    }
+}
+
+.analysis-meter {
+    width: 100%;
+    max-width: 420px;
+    height: 7px;
+    margin: 28px auto;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(214, 181, 109, 0.18);
+    border-radius: 99px;
+}
+
+.analysis-meter-fill {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        #9d752e,
+        var(--gold-light)
+    );
+    border-radius: inherit;
+    transition: width 0.7s ease;
+}
+
+/* =========================
+   VERDICT
+========================= */
+
+.verdict-panel {
+    margin: 25px 0;
+    padding: clamp(22px, 5vw, 38px) 14px;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(214, 181, 109, 0.1),
+            transparent 75%
+        ),
+        rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.verdict-label {
+    margin: 0 0 15px;
+    color: var(--gold);
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    line-height: 1.8;
+}
+
+.divine-word {
+    margin: 18px 0;
+    color: var(--gold-light);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.9rem, 7vw, 4.5rem);
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+    overflow-wrap: anywhere;
+    text-shadow: 0 0 30px rgba(214, 181, 109, 0.18);
+}
+
+.verdict-line {
+    width: 70px;
+    height: 1px;
+    margin: 22px auto;
+    background: var(--gold);
+}
+
+.selected-answer {
+    overflow-wrap: anywhere;
+}
+
+/* =========================
+   MARRIAGE ADVISORY
+========================= */
+
+.marriage-decree {
+    padding: 25px 16px;
+}
+
+.advisory-heading {
+    margin: 25px 0 12px;
+    color: var(--gold);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    line-height: 1.8;
+}
+
+.marriage-options {
+    margin: 8px 0;
+    color: var(--gold-light);
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    overflow-wrap: anywhere;
+}
+
+.or-text {
+    margin: 10px 0;
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+}
+
+/* =========================
+   WARNINGS
+========================= */
+
+.access-denied {
+    color: var(--danger);
+}
+
+/* =========================
+   MOBILE RESPONSIVENESS
+========================= */
+
+@media (max-width: 600px) {
+    body {
+        padding: 12px 8px;
+        align-items: flex-start;
+    }
+
+    #card {
+        margin: auto 0;
+        padding: 26px 17px;
+        border-radius: 13px;
+    }
+
+    h1 {
+        font-size: clamp(1.55rem, 7vw, 2.1rem);
+        letter-spacing: 0.025em;
+    }
+
+    .eyebrow {
+        font-size: 0.61rem;
+        letter-spacing: 0.11em;
+    }
+
+    .question {
+        font-size: 1.12rem;
+    }
+
+    .description {
+        font-size: 0.87rem;
+    }
+
+    .decree {
+        padding: 18px 13px;
+    }
+
+    .buttons {
+        gap: 10px;
+    }
+
+    .buttons button {
+        min-height: 49px;
+        padding: 13px 10px;
+        font-size: 0.75rem;
+    }
+
+    .love-button-area {
+        height: 190px !important;
+    }
+
+    .love-button-area #loveYes,
+    .love-button-area #loveNo {
+        min-height: 48px;
+        padding: 11px 5px;
+        font-size: 0.68rem;
+        letter-spacing: 0.015em;
+    }
+
+    .divine-word {
+        font-size: clamp(1.65rem, 7vw, 2.6rem);
+        letter-spacing: 0.02em;
+    }
+
+    .marriage-options {
+        font-size: 1.55rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
